@@ -13,7 +13,42 @@ escolha= inquirer.select(
 
 
 if escolha== "organizador de arquivos":
-    print("org. de arqui.")
+    print("")
+    #pasta que queremos organizar
+    pasta= Path.home()/ "Downloads"
+    #especificação dos arquivos
+    categorias={
+    "Imagens": [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+    "Documentos": [".pdf", ".doc",".docx", ".txt"],
+    "Musicas": [".mp3", ".wav", ".flac"],
+    "Videos": [".mp4", ".mkv", ".avi", ".mov"],
+    "Compactados": [".zip", ".rar",".7z"]
+    }
+    #percorre os arquivos da pasta dowloads
+    for arquivo in pasta.iterdir():
+        #verificar se não é um arquivo
+        if not arquivo.is_file():
+            continue
+        #pega a extensao do arquivo e transforma em letras minusculas
+        extensao= arquivo.suffix.lower()
+        #se não tiver nenhuma categoria ele vai ficar em outros
+        categoria= "outros"
+        #percorre cada categoria e suas extensoes especificas
+        for nome, extensoes in categorias.items():
+            #verifica se as extensoes pertencem aquela categoria
+            if extensao in extensoes:
+                categoria = nome #guarda o nome da categoria
+                break
+        #cria o caminho para a pasta de destino
+        destino= pasta / categoria
+        #cria uma pasta caso nao exista
+        destino.mkdir(exist_ok=True)
+        #move o arquivo pra pasta
+        shutil.move(str(arquivo), str(destino/arquivo.name))
+        #informações finais
+        print(f"{arquivo.name}--> {categoria}")
+    print("organização completa")
+
 
 if escolha=="pedra, papel e tesoura":
     #comando limpar terminal do linux
