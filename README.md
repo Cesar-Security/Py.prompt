@@ -3,7 +3,7 @@ Hub desenvolvido em python com o objetivo de consolidar meus conhecimentos relac
 
 ==sobre o script==
 
-=========== Adendos importantes ============: 
+========= Adendos importantes ============
 - porte principal pra linux. nao desenvolvido, ainda, o porte pra windowns nem mac (dificilmente havera pra MAC) 
 – Inquirer py nao é uma preferência, é necessário para que nao haja bugs. então, antes de instalar, tente: pip install inquirer
 =============================================
